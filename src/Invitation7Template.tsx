@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Invitation7Intro, Invitation7IntroProps } from './components/Invitation7Intro';
 import { Invitation7Delivery, Invitation7DeliveryProps } from './components/Invitation7Delivery';
 import { Invitation7CurtainReveal, Invitation7CurtainRevealProps } from './components/Invitation7CurtainReveal';
@@ -9,6 +9,7 @@ import { Invitation7Gallery, Invitation7GalleryProps } from './components/Invita
 import { Invitation7RSVP, Invitation7RSVPProps } from './components/Invitation7RSVP';
 import { Invitation7Ending, Invitation7EndingProps } from './components/Invitation7Ending';
 import { Invitation7MusicButton, Invitation7MusicButtonProps } from './components/Invitation7MusicButton';
+import { INVITATION7_MEDIA } from './media';
 import './invitation7.css';
 
 export interface Invitation7TemplateProps {
@@ -42,6 +43,31 @@ export const Invitation7Template: React.FC<Invitation7TemplateProps> = ({
   const [isIntroFinished, setIsIntroFinished] = useState<boolean>(defaultOpen);
   const [isIntroDismissed, setIsIntroDismissed] = useState<boolean>(defaultOpen);
 
+  // useRef ilə tək HTMLAudioElement və hasStartedMusicRef qoruması
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const hasStartedMusicRef = useRef<boolean>(false);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [hasAudioError, setHasAudioError] = useState<boolean>(false);
+
+  // İstifadəçi ilk dəfə giriş ekranında "Dəvətnaməni aç" toxunuşuna basan anda musiqi başlayır
+  const handleIntroStart = () => {
+    if (hasStartedMusicRef.current) return;
+    hasStartedMusicRef.current = true;
+
+    const audio = audioRef.current;
+    if (audio) {
+      audio.volume = 1;
+      audio
+        .play()
+        .then(() => {
+          setIsPlaying(true);
+        })
+        .catch((err) => {
+          console.warn('Audio play error on touch:', err);
+        });
+    }
+  };
+
   const handleIntroComplete = () => {
     setIsIntroFinished(true);
     // Telefon animasiyası bitdikdən sonra səhifə yuxarıdan Invitation7Delivery bölməsində başlayır
@@ -49,10 +75,39 @@ export const Invitation7Template: React.FC<Invitation7TemplateProps> = ({
     setTimeout(() => {
       setIsIntroDismissed(true);
     }, 500);
+    // Vacib: audio.currentTime = 0 İŞLƏDİLMİR! Musiqi intro, delivery və bütün bölmələrdə fasiləsiz davam edir.
+  };
+
+  const handleToggleMusic = () => {
+    const audio = audioRef.current;
+    if (!audio || hasAudioError) return;
+
+    if (isPlaying) {
+      audio.pause();
+      setIsPlaying(false);
+    } else {
+      audio
+        .play()
+        .then(() => {
+          setIsPlaying(true);
+        })
+        .catch((err) => {
+          console.warn('Audio toggle error:', err);
+        });
+    }
   };
 
   return (
     <div className="min-h-screen w-full bg-[#170104] text-[#F7EEE8] flex justify-center selection:bg-[#7A1623] selection:text-[#F7EEE8]">
+      {/* Tək HTMLAudioElement: useRef və hasStartedMusicRef ilə idarə olunur, bütün səhnələrdə fasiləsiz çalınır */}
+      <audio
+        ref={audioRef}
+        src={INVITATION7_MEDIA.music.audioSrc}
+        loop
+        preload="auto"
+        onError={() => setHasAudioError(true)}
+      />
+
       {/* Desktop Wrapper: Max 500px, mərkəzdə premium telefon görünüşü */}
       <main className="w-full max-w-[500px] min-h-screen bg-[#2A0308] shadow-[0_0_50px_rgba(0,0,0,0.85)] border-x border-[rgba(201,165,106,0.25)] flex flex-col relative overflow-x-hidden">
         {/* 1. Telefonlu giriş (Invitation7Intro): Tam ekran açılış mərhələsi */}
@@ -62,7 +117,7 @@ export const Invitation7Template: React.FC<Invitation7TemplateProps> = ({
               isIntroFinished ? 'opacity-0 pointer-events-none' : 'opacity-100'
             }`}
           >
-            <Invitation7Intro onComplete={handleIntroComplete} {...intro} />
+            <Invitation7Intro onStart={handleIntroStart} onComplete={handleIntroComplete} {...intro} />
           </div>
         )}
 
@@ -82,7 +137,14 @@ export const Invitation7Template: React.FC<Invitation7TemplateProps> = ({
         <Invitation7Gallery {...gallery} />
         <Invitation7RSVP {...rsvp} />
         <Invitation7Ending {...ending} />
-        <Invitation7MusicButton {...music} />
+
+        {/* Musiqi İdarəetmə Düyməsi */}
+        <Invitation7MusicButton
+          isPlaying={isPlaying}
+          onToggle={handleToggleMusic}
+          hasError={hasAudioError}
+          {...music}
+        />
       </main>
     </div>
   );

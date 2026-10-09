@@ -89,14 +89,17 @@ export const Invitation7Delivery: React.FC<Invitation7DeliveryProps> = ({
       {/* 3. Çox yüngül, tam ekran gradient (şəffaf kart/blur olmadan) */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#170104]/30 via-transparent to-[#170104]/50 pointer-events-none z-15" />
 
-      {/* 4. HTML Mətn Qatı */}
-      <div className="invitation7-video-page__content invitation7-delivery-content">
+      {/* 4. HTML Mətn Qatı - Videonun yuxarı boş hissəsində (top: 12-16%), çantanın üzərində heç bir mətn yoxdur */}
+      <div 
+        className="absolute left-0 right-0 z-20 flex flex-col items-center justify-center text-center pointer-events-none px-6"
+        style={{ top: '14%' }}
+      >
         {children || (
-          <div className="flex flex-col items-center justify-center max-w-[280px]">
+          <div className="flex flex-col items-center justify-center max-w-[320px]">
             <span className="font-handwriting text-5xl sm:text-6xl text-[#C9A56A] text-gold-shadow leading-none">
               {brideName}
             </span>
-            <span className="font-cormorant text-xs sm:text-sm text-[#F7EEE8] text-soft-shadow tracking-[0.18em] italic mt-1.5 uppercase">
+            <span className="font-cormorant text-xs sm:text-sm text-[#F7EEE8] text-soft-shadow tracking-[0.2em] italic mt-2 uppercase font-light">
               {tagline}
             </span>
           </div>

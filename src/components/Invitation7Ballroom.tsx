@@ -94,7 +94,10 @@ export const Invitation7Ballroom: React.FC<Invitation7BallroomProps> = ({
       {/* 4. HTML Mətn Qatı */}
       <div className="invitation7-video-page__content invitation7-ballroom-content">
         {children || (
-          <div className="flex flex-col items-center justify-center max-w-[320px] px-2">
+          <div 
+            className="flex flex-col items-center justify-center max-w-[320px] px-2"
+            style={{ transform: 'translateY(-10vh)' }}
+          >
             <span className="font-montserrat text-xs uppercase tracking-[0.25em] text-[#C9A56A] text-gold-shadow mb-2 font-medium">
               {subtitle}
             </span>

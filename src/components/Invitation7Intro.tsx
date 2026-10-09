@@ -3,12 +3,14 @@ import { INVITATION7_MEDIA } from '../media';
 
 export interface Invitation7IntroProps {
   onComplete?: () => void;
+  onStart?: () => void;
   brideName?: string;
   tagline?: string;
 }
 
 export const Invitation7Intro: React.FC<Invitation7IntroProps> = ({
   onComplete,
+  onStart,
   brideName = 'Aygün sizi',
   tagline = 'xına gecəsinə dəvət edir',
 }) => {
@@ -28,6 +30,9 @@ export const Invitation7Intro: React.FC<Invitation7IntroProps> = ({
   const handleStart = () => {
     if (hasStarted) return;
     setHasStarted(true);
+    if (onStart) {
+      onStart();
+    }
 
     const video = videoRef.current;
     if (video) {
@@ -104,32 +109,35 @@ export const Invitation7Intro: React.FC<Invitation7IntroProps> = ({
 
       {/* 3. Text Overlay */}
       {/* Rəng: bordo #5A0712, zərif əlyazması fontu, arxa fon, kart, blur və çərçivə YOXDUR */}
-      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none px-6 text-center">
-        <div className="flex flex-col items-center justify-center max-w-[280px] -mt-10 sm:-mt-14">
+      <div 
+        className="absolute left-0 right-0 z-20 flex flex-col items-center pointer-events-none px-6 text-center"
+        style={{ top: '20%' }}
+      >
+        <div className="flex flex-col items-center justify-center max-w-[280px]">
           <span 
             className="font-handwriting text-4xl sm:text-5xl leading-tight"
-            style={{ color: '#5A0712' }}
+            style={{ color: '#5A0712', fontWeight: 700 }}
           >
             {brideName}
           </span>
           <span 
             className="font-handwriting text-2xl sm:text-3xl leading-snug mt-1"
-            style={{ color: '#5A0712' }}
+            style={{ color: '#5A0712', fontWeight: 600 }}
           >
             {tagline}
           </span>
         </div>
-
-        {/* Gentle touch hint before user taps */}
-        {!hasStarted && (
-          <div className="absolute bottom-12 left-0 right-0 flex flex-col items-center justify-center animate-pulse">
-            <span className="font-montserrat text-[11px] text-[#C9A56A] uppercase tracking-[0.25em] font-medium drop-shadow-sm">
-              Dəvətnaməni açmaq üçün toxunun
-            </span>
-            <div className="w-1.5 h-1.5 rounded-full bg-[#C9A56A] mt-2" />
-          </div>
-        )}
       </div>
+
+      {/* Gentle touch hint before user taps */}
+      {!hasStarted && (
+        <div className="absolute bottom-12 left-0 right-0 z-20 pointer-events-none flex flex-col items-center justify-center animate-pulse">
+          <span className="font-montserrat text-[11px] text-[#C9A56A] uppercase tracking-[0.25em] font-medium drop-shadow-sm">
+            Dəvətnaməni açmaq üçün toxunun
+          </span>
+          <div className="w-1.5 h-1.5 rounded-full bg-[#C9A56A] mt-2" />
+        </div>
+      )}
     </section>
   );
 };

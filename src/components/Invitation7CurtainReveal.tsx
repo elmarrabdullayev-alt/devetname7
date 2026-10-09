@@ -17,6 +17,8 @@ export const Invitation7CurtainReveal: React.FC<Invitation7CurtainRevealProps> =
   const sectionRef = useRef<HTMLElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isFirstFrameRendered, setIsFirstFrameRendered] = useState(false);
+  const [isRevealed, setIsRevealed] = useState(false);
+  const hasRevealedRef = useRef(false);
 
   // IntersectionObserver: Yalnız ekranda görünəndə oynat, çıxanda pause et
   useEffect(() => {
@@ -54,6 +56,35 @@ export const Invitation7CurtainReveal: React.FC<Invitation7CurtainRevealProps> =
     }
   }, []);
 
+  const handleTimeUpdate = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+    const video = e.currentTarget;
+    if (video.currentTime > 0.05) {
+      setIsFirstFrameRendered(true);
+    }
+    // Videonun təxminən 65-70%-i tamamlandıqda mətni göstər və loop zamanı yoxa çıxarma
+    if (!hasRevealedRef.current) {
+      if (video.duration && Number.isFinite(video.duration) && video.duration > 0) {
+        if (video.currentTime / video.duration >= 0.65) {
+          hasRevealedRef.current = true;
+          setIsRevealed(true);
+        }
+      } else if (video.currentTime >= 2.4) {
+        hasRevealedRef.current = true;
+        setIsRevealed(true);
+      }
+    }
+  };
+
+  const handleVideoError = () => {
+    setIsFirstFrameRendered(false);
+    if (!hasRevealedRef.current) {
+      setTimeout(() => {
+        hasRevealedRef.current = true;
+        setIsRevealed(true);
+      }, 1000);
+    }
+  };
+
   return (
     <section
       ref={sectionRef}
@@ -67,15 +98,8 @@ export const Invitation7CurtainReveal: React.FC<Invitation7CurtainRevealProps> =
         muted
         playsInline
         preload="auto"
-        onError={() => {
-          // Xəta olarsa poster qalsın, qara ekran yaranmasın
-          setIsFirstFrameRendered(false);
-        }}
-        onTimeUpdate={(e) => {
-          if (e.currentTarget.currentTime > 0.05) {
-            setIsFirstFrameRendered(true);
-          }
-        }}
+        onError={handleVideoError}
+        onTimeUpdate={handleTimeUpdate}
         className="absolute inset-0 w-full h-full object-cover z-0"
       />
 
@@ -94,14 +118,28 @@ export const Invitation7CurtainReveal: React.FC<Invitation7CurtainRevealProps> =
       {/* 4. HTML Mətn Qatı */}
       <div className="invitation7-video-page__content invitation7-curtain-content">
         {children || (
-          <div className="flex flex-col items-center justify-center max-w-[320px] px-2">
+          <div
+            className={`transition-all duration-1000 ease-out transform ${
+              isRevealed
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-6 pointer-events-none'
+            } flex flex-col items-center justify-center max-w-[340px] px-6 py-5 text-center mx-4`}
+            style={{
+              background: 'rgba(42, 3, 8, 0.28)',
+              backdropFilter: 'blur(10px)',
+              WebkitBackdropFilter: 'blur(10px)',
+              border: '1px solid rgba(232, 201, 133, 0.24)',
+              boxShadow: '0 10px 32px rgba(23, 1, 4, 0.2)',
+              borderRadius: '20px',
+            }}
+          >
             <span className="font-montserrat text-xs uppercase tracking-[0.25em] text-[#C9A56A] text-gold-shadow mb-2 font-medium">
               {tagline}
             </span>
-            <h2 className="font-cormorant text-3xl sm:text-4xl text-[#F7EEE8] text-soft-shadow font-normal gold-gradient-text mb-3">
+            <h2 className="font-cormorant text-2xl sm:text-3xl text-[#F7EEE8] text-soft-shadow font-normal gold-gradient-text mb-2.5">
               {title}
             </h2>
-            <p className="font-cormorant text-base sm:text-lg text-[#F7EEE8]/90 text-soft-shadow italic leading-relaxed">
+            <p className="font-cormorant text-sm sm:text-base text-[#F7EEE8]/90 text-soft-shadow italic leading-relaxed">
               "{description}"
             </p>
           </div>
