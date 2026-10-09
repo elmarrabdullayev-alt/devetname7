@@ -1,0 +1,144 @@
+:root {
+  --burgundy-deep: #2A0308;
+  --burgundy: #5A0712;
+  --burgundy-soft: #7A1623;
+  --champagne-gold: #C9A56A;
+  --champagne-gold-light: #E0C79A;
+  --champagne-gold-dark: #A58249;
+  --ivory: #F7EEE8;
+  --ink: #170104;
+}
+
+body {
+  background-color: var(--burgundy-deep);
+  color: var(--ivory);
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.font-cormorant {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.font-montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.font-handwriting {
+  font-family: 'Alex Brush', 'Cormorant Garamond', cursive;
+}
+
+/* Luxury gold border and text gradients */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #F3E5C8 0%, #C9A56A 45%, #EAD4AA 75%, #A58249 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-border {
+  border-image: linear-gradient(to right, transparent, #C9A56A, transparent) 1;
+}
+
+.gold-box-border {
+  border: 1px solid rgba(201, 165, 106, 0.35);
+  box-shadow: 0 0 20px rgba(201, 165, 106, 0.08), inset 0 0 15px rgba(201, 165, 106, 0.05);
+}
+
+.gold-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  margin: 1.25rem 0;
+}
+
+.gold-divider::before,
+.gold-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 165, 106, 0.5), transparent);
+}
+
+/* Glassmorphism panel for cards */
+.luxury-glass {
+  background: rgba(42, 3, 8, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(201, 165, 106, 0.25);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+/* Subtle glow */
+.gold-glow {
+  filter: drop-shadow(0 0 8px rgba(201, 165, 106, 0.4));
+}
+
+/* Scroll Video Page Structure */
+.invitation7-video-page {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--burgundy-deep);
+}
+
+.invitation7-video-page__content {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+/* Specific content placements without cards or heavy rectangles */
+.invitation7-delivery-content {
+  justify-content: flex-end;
+  padding-bottom: 22svh;
+}
+
+.invitation7-curtain-content {
+  justify-content: center;
+  padding-top: 2rem;
+}
+
+.invitation7-ballroom-content {
+  justify-content: flex-end;
+  padding-bottom: 14svh;
+}
+
+.text-soft-shadow {
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85), 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+.text-gold-shadow {
+  text-shadow: 0 0 15px rgba(201, 165, 106, 0.45), 0 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+/* Custom scrollbar for mobile container */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--burgundy-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(201, 165, 106, 0.3);
+  border-radius: 2px;
+}

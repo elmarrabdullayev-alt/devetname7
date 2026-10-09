@@ -1,0 +1,6 @@
+{
+  "name": "Aygünün Xına Gecəsi - Dəvətnamə",
+  "description": "Aygünün Xına Gecəsi üçün premium mobil-first interaktiv xına dəvətnaməsi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
