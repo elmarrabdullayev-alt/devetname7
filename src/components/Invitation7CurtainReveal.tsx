@@ -123,15 +123,42 @@ export const Invitation7CurtainReveal: React.FC<Invitation7CurtainRevealProps> =
               isRevealed
                 ? 'opacity-100 translate-y-0'
                 : 'opacity-0 translate-y-6 pointer-events-none'
-            } flex flex-col items-center justify-center max-w-[360px] px-4 text-center`}
+            } flex flex-col items-center justify-center max-w-[380px] px-4 text-center`}
           >
-            <span className="font-montserrat text-sm sm:text-[15px] uppercase tracking-[0.25em] text-[#C9A56A] text-gold-shadow mb-2 font-medium">
+            <span
+              className="font-montserrat uppercase tracking-[0.16em] mb-2"
+              style={{
+                color: '#F4D59B',
+                fontSize: 'clamp(14px, 4vw, 16px)',
+                fontWeight: 700,
+                opacity: 1,
+                textShadow: '0 2px 10px rgba(23, 1, 4, 0.85)',
+              }}
+            >
               {tagline}
             </span>
-            <h2 className="font-cormorant text-3xl sm:text-4xl text-[#F7EEE8] text-soft-shadow font-normal gold-gradient-text mb-3 leading-snug">
+            <h2
+              className="font-cormorant mb-3 leading-snug"
+              style={{
+                color: '#F7EEE8',
+                fontSize: 'clamp(32px, 8.5vw, 36px)',
+                fontWeight: 600,
+                opacity: 1,
+                textShadow: '0 2px 10px rgba(23, 1, 4, 0.85)',
+              }}
+            >
               {title}
             </h2>
-            <p className="font-cormorant text-base sm:text-lg text-[#F7EEE8]/95 text-soft-shadow italic leading-relaxed">
+            <p
+              className="font-cormorant italic leading-relaxed"
+              style={{
+                color: '#F7EEE8',
+                fontSize: 'clamp(18px, 4.8vw, 20px)',
+                fontWeight: 500,
+                opacity: 1,
+                textShadow: '0 2px 10px rgba(23, 1, 4, 0.85)',
+              }}
+            >
               "{description}"
             </p>
           </div>

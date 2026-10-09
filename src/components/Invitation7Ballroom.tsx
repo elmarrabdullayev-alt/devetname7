@@ -93,18 +93,45 @@ export const Invitation7Ballroom: React.FC<Invitation7BallroomProps> = ({
 
       {/* 4. HTML Mətn Qatı - Səhifənin yuxarı hissəsində (top: 15%-20%), çilçıraq və aşağıdakı zal görünüşü açıq qalır */}
       <div 
-        className="absolute left-0 right-0 z-20 flex flex-col items-center justify-center text-center pointer-events-none px-6"
-        style={{ top: '17%' }}
+        className="absolute left-0 right-0 z-20 flex flex-col items-center justify-center text-center pointer-events-none px-5"
+        style={{ top: '16%' }}
       >
         {children || (
-          <div className="flex flex-col items-center justify-center max-w-[340px] px-2">
-            <span className="font-montserrat text-xs uppercase tracking-[0.25em] text-[#C9A56A] text-gold-shadow mb-2 font-medium">
+          <div className="flex flex-col items-center justify-center max-w-[380px] px-2">
+            <span
+              className="font-montserrat uppercase tracking-[0.16em] mb-2"
+              style={{
+                color: '#F4D59B',
+                fontSize: 'clamp(15px, 4.2vw, 16px)',
+                fontWeight: 700,
+                opacity: 1,
+                textShadow: '0 2px 10px rgba(23, 1, 4, 0.85)',
+              }}
+            >
               {subtitle}
             </span>
-            <h2 className="font-cormorant text-3xl sm:text-4xl text-[#F7EEE8] text-soft-shadow font-normal gold-gradient-text mb-2.5">
+            <h2
+              className="font-cormorant mb-2.5 leading-snug"
+              style={{
+                color: '#F7EEE8',
+                fontSize: 'clamp(34px, 9vw, 38px)',
+                fontWeight: 600,
+                opacity: 1,
+                textShadow: '0 2px 10px rgba(23, 1, 4, 0.85)',
+              }}
+            >
               {title}
             </h2>
-            <p className="font-cormorant text-base sm:text-lg text-[#F7EEE8]/90 text-soft-shadow leading-relaxed italic">
+            <p
+              className="font-cormorant italic leading-relaxed"
+              style={{
+                color: '#F7EEE8',
+                fontSize: 'clamp(18px, 4.8vw, 20px)',
+                fontWeight: 500,
+                opacity: 1,
+                textShadow: '0 2px 10px rgba(23, 1, 4, 0.85)',
+              }}
+            >
               "{description}"
             </p>
           </div>
