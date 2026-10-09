@@ -142,3 +142,105 @@ body {
   background: rgba(201, 165, 106, 0.3);
   border-radius: 2px;
 }
+
+/* ==========================================================================
+   Kinematik Keçidlər və Yumşaq Gradient Birləşmələri
+   Heç bir video/şəkli dəyişmədən bölmələr arasındakı sərt xətləri yumşaldır
+   ========================================================================== */
+
+:root {
+  --section-overlap: clamp(80px, 16vw, 140px);
+  --transition-gradient-height: clamp(120px, 20vw, 160px);
+}
+
+/* Video səhnələri üçün ardıcıl axıcı overlap (-margin) */
+.scene-transition-overlap {
+  margin-top: calc(-1 * var(--section-overlap));
+  position: relative;
+}
+
+/* Üst hissədən gələn yumşaq bordo-qızılı keçid (::before) */
+.blend-transition-top {
+  position: relative;
+}
+
+.blend-transition-top::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--transition-gradient-height);
+  background: linear-gradient(
+    180deg,
+    rgba(23, 1, 4, 0.95) 0%,
+    rgba(42, 3, 8, 0.75) 35%,
+    rgba(90, 7, 18, 0.35) 70%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 18;
+}
+
+/* Alt hissəyə tədricən tündləşən zərif keçid (::after) */
+.blend-transition-bottom {
+  position: relative;
+}
+
+.blend-transition-bottom::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--transition-gradient-height);
+  background: linear-gradient(
+    0deg,
+    rgba(23, 1, 4, 0.95) 0%,
+    rgba(42, 3, 8, 0.75) 35%,
+    rgba(90, 7, 18, 0.35) 70%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 18;
+}
+
+/* Scroll zonası bölmələri üçün incə gradient birləşmələri */
+.content-zone-section {
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.content-zone-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: clamp(50px, 10vw, 80px);
+  background: linear-gradient(
+    180deg,
+    rgba(23, 1, 4, 0.45) 0%,
+    rgba(42, 3, 8, 0.15) 60%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.content-zone-section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: clamp(50px, 10vw, 80px);
+  background: linear-gradient(
+    0deg,
+    rgba(23, 1, 4, 0.45) 0%,
+    rgba(42, 3, 8, 0.15) 60%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}

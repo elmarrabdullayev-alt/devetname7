@@ -99,7 +99,7 @@ export const Invitation7Intro: React.FC<Invitation7IntroProps> = ({
   return (
     <section 
       onClick={handleStart}
-      className="relative w-full h-[100dvh] min-h-[560px] max-w-[500px] mx-auto flex flex-col items-center justify-center overflow-hidden bg-[#2A0308] cursor-pointer select-none"
+      className="relative w-full h-[100dvh] min-h-[560px] max-w-[500px] mx-auto flex flex-col items-center justify-center overflow-hidden bg-[#2A0308] cursor-pointer select-none blend-transition-bottom"
     >
       {/* 1. Video Element */}
       <video

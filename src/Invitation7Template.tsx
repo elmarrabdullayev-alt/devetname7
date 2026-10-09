@@ -323,7 +323,10 @@ export const Invitation7Template: React.FC<Invitation7TemplateProps> = ({
         </div>
 
         {/* 4-cü Ballroom səhifəsindən sonra Location, Dress Code, Qalereya, RSVP və Son dəvət hissələrinin scroll zonası */}
-        <section ref={contentZoneRef} className="relative z-10 w-full flex flex-col bg-transparent">
+        <section
+          ref={contentZoneRef}
+          className="relative z-10 w-full flex flex-col bg-transparent scene-transition-overlap blend-transition-top pt-6"
+        >
           <Invitation7Location {...location} />
           <Invitation7DressCode {...dressCode} />
           <Invitation7Gallery {...gallery} />

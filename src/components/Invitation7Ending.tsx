@@ -14,7 +14,7 @@ export const Invitation7Ending: React.FC<Invitation7EndingProps> = ({
   familyNote,
 }) => {
   return (
-    <section className="relative w-full py-14 px-6 flex flex-col items-center text-center bg-transparent overflow-hidden">
+    <section className="content-zone-section blend-transition-bottom relative w-full py-16 px-6 flex flex-col items-center text-center bg-transparent overflow-hidden">
       {/* Background soft ambient radial light */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-20"

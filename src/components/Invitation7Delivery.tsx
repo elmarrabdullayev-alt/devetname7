@@ -55,7 +55,7 @@ export const Invitation7Delivery: React.FC<Invitation7DeliveryProps> = ({
   return (
     <section
       ref={sectionRef}
-      className="invitation7-video-page relative z-20 w-full min-h-[100svh] overflow-hidden bg-[#2A0308] select-none"
+      className="invitation7-video-page relative z-20 w-full min-h-[100svh] overflow-hidden bg-[#2A0308] select-none blend-transition-top blend-transition-bottom"
     >
       {/* 1. Arxa Fon Videosu (loop={true}) */}
       <video
