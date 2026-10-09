@@ -49,7 +49,7 @@ export const Invitation7RSVP: React.FC<Invitation7RSVPProps> = ({
   };
 
   return (
-    <section className="content-zone-section relative w-full py-12 px-6 flex flex-col items-center text-center border-b border-[rgba(201,165,106,0.15)] bg-transparent">
+    <section className="content-zone-section relative w-full py-12 px-6 flex flex-col items-center text-center bg-transparent">
       <p className="font-montserrat text-xs uppercase tracking-[0.25em] text-[#C9A56A] mb-1 font-medium">
         RSVP
       </p>
@@ -63,10 +63,6 @@ export const Invitation7RSVP: React.FC<Invitation7RSVPProps> = ({
       </p>
 
       <div className="w-full max-w-sm p-2 sm:p-4 relative">
-        {/* Subtle decorative inner corner */}
-        <div className="absolute top-1.5 right-1.5 w-3 h-3 border-t border-r border-[#C9A56A]/40" />
-        <div className="absolute bottom-1.5 left-1.5 w-3 h-3 border-b border-l border-[#C9A56A]/40" />
-
         {isSubmitted ? (
           <div className="py-8 flex flex-col items-center text-center">
             <div className="w-12 h-12 rounded-full border border-[#C9A56A] flex items-center justify-center text-[#C9A56A] mb-3 bg-[#5A0712]/50">

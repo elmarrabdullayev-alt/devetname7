@@ -50,23 +50,6 @@ body {
   box-shadow: 0 0 20px rgba(201, 165, 106, 0.08), inset 0 0 15px rgba(201, 165, 106, 0.05);
 }
 
-.gold-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  width: 100%;
-  margin: 1.25rem 0;
-}
-
-.gold-divider::before,
-.gold-divider::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201, 165, 106, 0.5), transparent);
-}
-
 /* Glassmorphism panel for cards */
 .luxury-glass {
   background: rgba(42, 3, 8, 0.85);
@@ -80,15 +63,19 @@ body {
 }
 
 /* Scroll Video Page Structure */
-.invitation7-video-page {
+.invitation7-video-page,
+.invitation7-fullscreen-scene {
   position: relative;
   width: 100%;
   min-height: 100svh;
+  min-height: 100dvh;
+  height: 100dvh;
+  box-sizing: border-box;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   background-color: var(--burgundy-deep);
   transform: translateZ(0);
 }
@@ -160,9 +147,8 @@ body {
   --transition-gradient-height: clamp(120px, 20vw, 160px);
 }
 
-/* Video səhnələri üçün ardıcıl axıcı overlap (-margin) */
+/* Video səhnələri üçün ardıcıl mövqe */
 .scene-transition-overlap {
-  margin-top: calc(-1 * var(--section-overlap));
   position: relative;
 }
 
@@ -214,43 +200,9 @@ body {
   transform: translateZ(0);
 }
 
-/* Scroll zonası bölmələri üçün incə gradient birləşmələri və content-visibility */
+/* Scroll zonası bölmələri üçün incə content-visibility */
 .content-zone-section {
   position: relative;
   content-visibility: auto;
   contain-intrinsic-size: 1px 320px;
-}
-
-.content-zone-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: clamp(50px, 10vw, 80px);
-  background: linear-gradient(
-    180deg,
-    rgba(23, 1, 4, 0.45) 0%,
-    rgba(42, 3, 8, 0.15) 60%,
-    transparent 100%
-  );
-  pointer-events: none;
-  z-index: 1;
-}
-
-.content-zone-section::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: clamp(50px, 10vw, 80px);
-  background: linear-gradient(
-    0deg,
-    rgba(23, 1, 4, 0.45) 0%,
-    rgba(42, 3, 8, 0.15) 60%,
-    transparent 100%
-  );
-  pointer-events: none;
-  z-index: 1;
 }

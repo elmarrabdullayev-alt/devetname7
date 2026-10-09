@@ -34,14 +34,9 @@ export const Invitation7Ending: React.FC<Invitation7EndingProps> = ({
       </div>
 
       {/* Qısa Yekun Dəvət */}
-      <p className="relative z-10 font-cormorant text-xl sm:text-2xl text-[#F7EEE8] max-w-xs italic leading-relaxed mb-6 px-2">
+      <p className="relative z-10 font-cormorant text-xl sm:text-2xl text-[#F7EEE8] max-w-xs italic leading-relaxed mb-4 px-2">
         "{closingMessage}"
       </p>
-
-      {/* Gold Divider */}
-      <div className="gold-divider max-w-[200px] my-3">
-        <span className="w-2 h-2 rotate-45 bg-[#C9A56A]" />
-      </div>
 
       {/* Sign-off */}
       <p className="relative z-10 font-montserrat text-xs tracking-[0.2em] uppercase text-[#C9A56A]/80 mt-2 mb-1">
@@ -61,7 +56,7 @@ export const Invitation7Ending: React.FC<Invitation7EndingProps> = ({
       </div>
 
       {/* Small copyright/watermark-free quiet bottom marker */}
-      <div className="relative z-10 mt-10 pt-4 border-t border-[rgba(201,165,106,0.15)] w-full max-w-xs flex justify-center">
+      <div className="relative z-10 mt-10 pt-4 w-full max-w-xs flex justify-center">
         <span className="font-montserrat text-[10px] text-[#C9A56A]/50 tracking-[0.25em] uppercase">
           Xına Gecəsi 2026
         </span>

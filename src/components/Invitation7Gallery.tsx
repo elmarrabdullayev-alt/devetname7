@@ -31,7 +31,7 @@ export const Invitation7Gallery: React.FC<Invitation7GalleryProps> = ({
   ];
 
   return (
-    <section className="content-zone-section relative w-full py-12 px-6 flex flex-col items-center text-center border-b border-[rgba(201,165,106,0.15)] bg-transparent">
+    <section className="content-zone-section relative w-full py-12 px-6 flex flex-col items-center text-center bg-transparent">
       <p className="font-montserrat text-xs uppercase tracking-[0.25em] text-[#C9A56A] mb-1 font-medium">
         QALEREYA
       </p>

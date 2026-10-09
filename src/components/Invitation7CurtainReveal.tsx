@@ -88,7 +88,14 @@ export const Invitation7CurtainReveal: React.FC<Invitation7CurtainRevealProps> =
   return (
     <section
       ref={sectionRef}
-      className="invitation7-video-page scene-transition-overlap relative z-20 w-full min-h-[100svh] overflow-hidden bg-[#2A0308] select-none blend-transition-top blend-transition-bottom"
+      className="invitation7-video-page invitation7-fullscreen-scene relative z-20 bg-[#2A0308] select-none blend-transition-top blend-transition-bottom"
+      style={{
+        minHeight: '100svh',
+        height: '100dvh',
+        width: '100%',
+        boxSizing: 'border-box',
+        overflow: 'hidden',
+      }}
     >
       {/* 1. Arxa Fon Videosu (loop={true}) */}
       <video
