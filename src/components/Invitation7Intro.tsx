@@ -152,16 +152,24 @@ export const Invitation7Intro: React.FC<Invitation7IntroProps> = ({
         className="absolute left-0 right-0 z-20 flex flex-col items-center pointer-events-none px-6 text-center"
         style={{ top: '20%' }}
       >
-        <div className="flex flex-col items-center justify-center max-w-[280px]">
+        <div className="flex flex-col items-center justify-center max-w-[320px]">
           <span 
-            className="font-handwriting text-4xl sm:text-5xl leading-tight"
-            style={{ color: '#5A0712', fontWeight: 700 }}
+            className="font-handwriting text-[42px] sm:text-[52px] leading-tight"
+            style={{ 
+              color: '#5A0712', 
+              fontWeight: 700,
+              textShadow: '0 1px 5px rgba(255, 238, 232, 0.25)',
+            }}
           >
             {brideName}
           </span>
           <span 
-            className="font-handwriting text-2xl sm:text-3xl leading-snug mt-1"
-            style={{ color: '#5A0712', fontWeight: 600 }}
+            className="font-handwriting text-[29px] sm:text-[34px] leading-snug mt-1"
+            style={{ 
+              color: '#5A0712', 
+              fontWeight: 600,
+              textShadow: '0 1px 5px rgba(255, 238, 232, 0.25)',
+            }}
           >
             {tagline}
           </span>
@@ -171,7 +179,7 @@ export const Invitation7Intro: React.FC<Invitation7IntroProps> = ({
       {/* Gentle touch hint before user taps */}
       {!hasStarted && (
         <div className="absolute bottom-12 left-0 right-0 z-20 pointer-events-none flex flex-col items-center justify-center animate-pulse">
-          <span className="font-montserrat text-[11px] text-[#C9A56A] uppercase tracking-[0.25em] font-medium drop-shadow-sm">
+          <span className="font-montserrat text-[14px] sm:text-[15px] text-[#C9A56A] uppercase tracking-[0.14em] font-medium drop-shadow-sm">
             Dəvətnaməni açmaq üçün toxunun
           </span>
           <div className="w-1.5 h-1.5 rounded-full bg-[#C9A56A] mt-2" />
