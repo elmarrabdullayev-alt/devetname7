@@ -36,7 +36,7 @@ export const Invitation7CurtainReveal: React.FC<Invitation7CurtainRevealProps> =
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.15 }
     );
 
     observer.observe(section);
@@ -97,10 +97,11 @@ export const Invitation7CurtainReveal: React.FC<Invitation7CurtainRevealProps> =
         loop
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
         onError={handleVideoError}
         onTimeUpdate={handleTimeUpdate}
         className="absolute inset-0 w-full h-full object-cover z-0"
+        style={{ transform: 'translateZ(0)' }}
       />
 
       {/* 2. Poster Qoruyucu Şəkil */}
@@ -119,7 +120,7 @@ export const Invitation7CurtainReveal: React.FC<Invitation7CurtainRevealProps> =
       <div className="invitation7-video-page__content invitation7-curtain-content">
         {children || (
           <div
-            className={`transition-all duration-1000 ease-out transform ${
+            className={`transition-[opacity,transform] duration-1000 ease-out transform ${
               isRevealed
                 ? 'opacity-100 translate-y-0'
                 : 'opacity-0 translate-y-6 pointer-events-none'

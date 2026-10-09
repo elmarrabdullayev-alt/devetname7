@@ -69,6 +69,8 @@ export const Invitation7Template: React.FC<Invitation7TemplateProps> = ({
           setIsContentZoneVisible(entry.isIntersecting);
           if (entry.isIntersecting) {
             contentVideoRef.current?.play().catch(() => {});
+          } else {
+            contentVideoRef.current?.pause();
           }
         });
       },
@@ -272,7 +274,7 @@ export const Invitation7Template: React.FC<Invitation7TemplateProps> = ({
 
         {/* 2. Normal şaquli scroll edilən dəvətnamə axını */}
         {/* 1-ci səhifə (min-height: 100svh): Fon video + mətn */}
-        <Invitation7Delivery {...delivery} />
+        <Invitation7Delivery isActive={isIntroFinished} {...delivery} />
 
         {/* 2-ci səhifə (min-height: 100svh): Fon video + mətn */}
         <Invitation7CurtainReveal {...curtainReveal} />
@@ -287,7 +289,8 @@ export const Invitation7Template: React.FC<Invitation7TemplateProps> = ({
           }`}
           style={{
             left: '50%',
-            transform: 'translateX(-50%)',
+            transform: 'translateX(-50%) translateZ(0)',
+            willChange: 'transform',
           }}
           aria-hidden="true"
         >
@@ -296,8 +299,8 @@ export const Invitation7Template: React.FC<Invitation7TemplateProps> = ({
             src={INVITATION7_MEDIA.contentBackground.webm}
             muted
             playsInline
-            autoPlay
             loop
+            preload="metadata"
             onTimeUpdate={(e) => {
               if (e.currentTarget.currentTime > 0.05) {
                 setIsContentVideoReady(true);
@@ -307,6 +310,7 @@ export const Invitation7Template: React.FC<Invitation7TemplateProps> = ({
               setIsContentVideoReady(false);
             }}
             className="absolute inset-0 w-full h-full object-cover z-0"
+            style={{ transform: 'translateZ(0)' }}
           />
 
           {/* Poster fallback: İlk real video kadrı gələnədək və ya xəta olduqda görünür */}

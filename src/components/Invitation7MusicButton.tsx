@@ -24,6 +24,7 @@ export const Invitation7MusicButton: React.FC<Invitation7MusicButtonProps> = ({
     <aside 
       aria-label="Musiqi İdarəetməsi"
       className="fixed bottom-5 right-5 sm:bottom-6 sm:right-[max(1.5rem,calc((100vw-500px)/2+1.5rem))] z-50 flex items-center gap-2"
+      style={{ transform: 'translateZ(0)' }}
     >
       {/* Floating Gold & Burgundy Music Toggle */}
       <button

@@ -69,16 +69,14 @@ body {
 
 /* Glassmorphism panel for cards */
 .luxury-glass {
-  background: rgba(42, 3, 8, 0.65);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(42, 3, 8, 0.85);
   border: 1px solid rgba(201, 165, 106, 0.25);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
 }
 
 /* Subtle glow */
 .gold-glow {
-  filter: drop-shadow(0 0 8px rgba(201, 165, 106, 0.4));
+  filter: drop-shadow(0 0 6px rgba(201, 165, 106, 0.35));
 }
 
 /* Scroll Video Page Structure */
@@ -92,6 +90,11 @@ body {
   justify-content: center;
   overflow: hidden;
   background-color: var(--burgundy-deep);
+  transform: translateZ(0);
+}
+
+.invitation7-video-page video {
+  transform: translateZ(0);
 }
 
 .invitation7-video-page__content {
@@ -184,6 +187,7 @@ body {
   );
   pointer-events: none;
   z-index: 18;
+  transform: translateZ(0);
 }
 
 /* Alt hissəyə tədricən tündləşən zərif keçid (::after) */
@@ -207,12 +211,14 @@ body {
   );
   pointer-events: none;
   z-index: 18;
+  transform: translateZ(0);
 }
 
-/* Scroll zonası bölmələri üçün incə gradient birləşmələri */
+/* Scroll zonası bölmələri üçün incə gradient birləşmələri və content-visibility */
 .content-zone-section {
   position: relative;
-  transition: background-color 0.3s ease;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 320px;
 }
 
 .content-zone-section::before {

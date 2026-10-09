@@ -34,7 +34,7 @@ export const Invitation7Ballroom: React.FC<Invitation7BallroomProps> = ({
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.15 }
     );
 
     observer.observe(section);
@@ -66,7 +66,7 @@ export const Invitation7Ballroom: React.FC<Invitation7BallroomProps> = ({
         loop
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
         onError={() => {
           // Xəta olarsa poster qalsın, qara ekran yaranmasın
           setIsFirstFrameRendered(false);
@@ -77,6 +77,7 @@ export const Invitation7Ballroom: React.FC<Invitation7BallroomProps> = ({
           }
         }}
         className="absolute inset-0 w-full h-full object-cover z-0"
+        style={{ transform: 'translateZ(0)' }}
       />
 
       {/* 2. Poster Qoruyucu Şəkil */}

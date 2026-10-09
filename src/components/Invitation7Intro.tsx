@@ -25,6 +25,9 @@ export const Invitation7Intro: React.FC<Invitation7IntroProps> = ({
   const handleComplete = () => {
     if (hasEndedRef.current) return;
     hasEndedRef.current = true;
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
     if (!hasTriggeredBeforeCompleteRef.current) {
       hasTriggeredBeforeCompleteRef.current = true;
       if (onBeforeComplete) {
@@ -107,7 +110,7 @@ export const Invitation7Intro: React.FC<Invitation7IntroProps> = ({
         src={INVITATION7_MEDIA.intro.webm}
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
         loop={false}
         onEnded={handleComplete}
         onError={onVideoError}

@@ -5,18 +5,21 @@ export interface Invitation7DeliveryProps {
   brideName?: string;
   tagline?: string;
   children?: React.ReactNode;
+  isActive?: boolean;
 }
 
 export const Invitation7Delivery: React.FC<Invitation7DeliveryProps> = ({
   brideName = 'Aygün',
   tagline = 'xına gecəsinə dəvət edir',
   children,
+  isActive = true,
 }) => {
   const sectionRef = useRef<HTMLElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isFirstFrameRendered, setIsFirstFrameRendered] = useState(false);
+  const isIntersectingRef = useRef(false);
 
-  // IntersectionObserver: Yalnız ekranda görünəndə oynat, çıxanda pause et
+  // IntersectionObserver: Yalnız ekranda görünəndə və aktiv olduqda oynat, çıxanda pause et
   useEffect(() => {
     const section = sectionRef.current;
     const video = videoRef.current;
@@ -25,19 +28,32 @@ export const Invitation7Delivery: React.FC<Invitation7DeliveryProps> = ({
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          isIntersectingRef.current = entry.isIntersecting;
+          if (entry.isIntersecting && isActive) {
             video.play().catch(() => {});
           } else {
             video.pause();
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.15 }
     );
 
     observer.observe(section);
     return () => observer.disconnect();
-  }, []);
+  }, [isActive]);
+
+  // Aktivlik dəyişdikdə video vəziyyətini yenilə
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isActive && isIntersectingRef.current) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, [isActive]);
 
   // Poster qoruması: İlk real video kadrı gələnədək poster görünsün
   useEffect(() => {
@@ -64,7 +80,7 @@ export const Invitation7Delivery: React.FC<Invitation7DeliveryProps> = ({
         loop
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
         onError={() => {
           // Xəta olarsa poster qalsın, qara ekran yaranmasın
           setIsFirstFrameRendered(false);
@@ -75,6 +91,7 @@ export const Invitation7Delivery: React.FC<Invitation7DeliveryProps> = ({
           }
         }}
         className="absolute inset-0 w-full h-full object-cover z-0"
+        style={{ transform: 'translateZ(0)' }}
       />
 
       {/* 2. Poster Qoruyucu Şəkil */}
