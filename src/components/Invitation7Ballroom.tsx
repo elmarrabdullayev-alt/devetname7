@@ -57,7 +57,7 @@ export const Invitation7Ballroom: React.FC<Invitation7BallroomProps> = ({
   return (
     <section
       ref={sectionRef}
-      className="invitation7-video-page relative w-full min-h-[100svh] overflow-hidden bg-[#2A0308] select-none"
+      className="invitation7-video-page relative z-20 w-full min-h-[100svh] overflow-hidden bg-[#2A0308] select-none"
     >
       {/* 1. Arxa Fon Videosu (loop={true}) */}
       <video
@@ -91,13 +91,13 @@ export const Invitation7Ballroom: React.FC<Invitation7BallroomProps> = ({
       {/* 3. Çox yüngül, tam ekran gradient (şəffaf kart/blur olmadan) */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#170104]/30 via-transparent to-[#170104]/60 pointer-events-none z-15" />
 
-      {/* 4. HTML Mətn Qatı */}
-      <div className="invitation7-video-page__content invitation7-ballroom-content">
+      {/* 4. HTML Mətn Qatı - Səhifənin yuxarı hissəsində (top: 15%-20%), çilçıraq və aşağıdakı zal görünüşü açıq qalır */}
+      <div 
+        className="absolute left-0 right-0 z-20 flex flex-col items-center justify-center text-center pointer-events-none px-6"
+        style={{ top: '17%' }}
+      >
         {children || (
-          <div 
-            className="flex flex-col items-center justify-center max-w-[320px] px-2"
-            style={{ transform: 'translateY(-10vh)' }}
-          >
+          <div className="flex flex-col items-center justify-center max-w-[340px] px-2">
             <span className="font-montserrat text-xs uppercase tracking-[0.25em] text-[#C9A56A] text-gold-shadow mb-2 font-medium">
               {subtitle}
             </span>

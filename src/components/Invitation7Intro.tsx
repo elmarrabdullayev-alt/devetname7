@@ -4,6 +4,7 @@ import { INVITATION7_MEDIA } from '../media';
 export interface Invitation7IntroProps {
   onComplete?: () => void;
   onStart?: () => void;
+  onBeforeComplete?: () => void;
   brideName?: string;
   tagline?: string;
 }
@@ -11,6 +12,7 @@ export interface Invitation7IntroProps {
 export const Invitation7Intro: React.FC<Invitation7IntroProps> = ({
   onComplete,
   onStart,
+  onBeforeComplete,
   brideName = 'Aygün sizi',
   tagline = 'xına gecəsinə dəvət edir',
 }) => {
@@ -18,10 +20,17 @@ export const Invitation7Intro: React.FC<Invitation7IntroProps> = ({
   const [isFirstFrameRendered, setIsFirstFrameRendered] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const hasEndedRef = useRef(false);
+  const hasTriggeredBeforeCompleteRef = useRef(false);
 
   const handleComplete = () => {
     if (hasEndedRef.current) return;
     hasEndedRef.current = true;
+    if (!hasTriggeredBeforeCompleteRef.current) {
+      hasTriggeredBeforeCompleteRef.current = true;
+      if (onBeforeComplete) {
+        onBeforeComplete();
+      }
+    }
     if (onComplete) {
       onComplete();
     }
@@ -44,10 +53,22 @@ export const Invitation7Intro: React.FC<Invitation7IntroProps> = ({
         .catch(() => {
           // Playback blocked or file error: show poster, wait 1.5s and advance safely
           setTimeout(() => {
+            if (!hasTriggeredBeforeCompleteRef.current) {
+              hasTriggeredBeforeCompleteRef.current = true;
+              onBeforeComplete?.();
+            }
+          }, 800);
+          setTimeout(() => {
             handleComplete();
           }, 1500);
         });
     } else {
+      setTimeout(() => {
+        if (!hasTriggeredBeforeCompleteRef.current) {
+          hasTriggeredBeforeCompleteRef.current = true;
+          onBeforeComplete?.();
+        }
+      }, 800);
       setTimeout(() => {
         handleComplete();
       }, 1500);
@@ -91,8 +112,23 @@ export const Invitation7Intro: React.FC<Invitation7IntroProps> = ({
         onEnded={handleComplete}
         onError={onVideoError}
         onTimeUpdate={(e) => {
-          if (e.currentTarget.currentTime > 0.05) {
+          const video = e.currentTarget;
+          if (video.currentTime > 0.05) {
             setIsFirstFrameRendered(true);
+          }
+          // Giriş videosunun bitməsinə 700ms qalmış intro musiqisini dayandırmaq üçün bildiriş
+          if (
+            !hasTriggeredBeforeCompleteRef.current &&
+            video.duration &&
+            Number.isFinite(video.duration) &&
+            video.duration > 0
+          ) {
+            if (video.duration - video.currentTime <= 0.7) {
+              hasTriggeredBeforeCompleteRef.current = true;
+              if (onBeforeComplete) {
+                onBeforeComplete();
+              }
+            }
           }
         }}
         className="absolute inset-0 w-full h-full object-cover z-0"

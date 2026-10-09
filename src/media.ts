@@ -21,9 +21,11 @@ export interface Invitation7MediaConfig {
   delivery: MediaVideoAsset;
   curtain: MediaVideoAsset;
   ballroom: MediaVideoAsset;
+  contentBackground: MediaVideoAsset;
   gallery: [MediaImageAsset, MediaImageAsset];
   music: {
-    audioSrc: string;
+    introSrc: string;
+    mainSrc: string;
     title: string;
     artist?: string;
   };
@@ -51,6 +53,11 @@ export const INVITATION7_MEDIA: Invitation7MediaConfig = {
     posterWebp: '/templates/invitation7/ballroom-cover.webp',
     title: 'Ballroom / Əsas Zal Animasiyası',
   },
+  contentBackground: {
+    webm: '/templates/invitation7/content-background.webm',
+    posterWebp: '/templates/invitation7/content-background.webp',
+    title: 'Məzmun Fon Videosu',
+  },
   gallery: [
     {
       webp: '/templates/invitation7/gallery-1.webp',
@@ -64,7 +71,8 @@ export const INVITATION7_MEDIA: Invitation7MediaConfig = {
     },
   ],
   music: {
-    audioSrc: '/templates/invitation7/music.mp3',
+    introSrc: '/templates/invitation7/intro-music.mp3',
+    mainSrc: '/templates/invitation7/main-music.mp3',
     title: 'Xına Melodiyası',
     artist: 'Instrumental',
   },

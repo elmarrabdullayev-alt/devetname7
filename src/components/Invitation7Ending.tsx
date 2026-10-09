@@ -14,10 +14,10 @@ export const Invitation7Ending: React.FC<Invitation7EndingProps> = ({
   familyNote,
 }) => {
   return (
-    <section className="relative w-full py-14 px-6 flex flex-col items-center text-center bg-gradient-to-b from-[#2A0308] via-[#170104] to-[#170104] overflow-hidden">
+    <section className="relative w-full py-14 px-6 flex flex-col items-center text-center bg-transparent overflow-hidden">
       {/* Background soft ambient radial light */}
       <div 
-        className="absolute inset-0 pointer-events-none opacity-30"
+        className="absolute inset-0 pointer-events-none opacity-20"
         style={{
           background: 'radial-gradient(circle at 50% 60%, #7A1623 0%, transparent 70%)',
         }}

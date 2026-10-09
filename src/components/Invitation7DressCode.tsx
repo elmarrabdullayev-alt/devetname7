@@ -24,7 +24,7 @@ export const Invitation7DressCode: React.FC<Invitation7DressCodeProps> = ({
   ],
 }) => {
   return (
-    <section className="relative w-full py-8 px-6 flex flex-col items-center text-center border-b border-[rgba(201,165,106,0.2)] bg-gradient-to-b from-[#2A0308] via-[#5A0712]/20 to-[#2A0308]">
+    <section className="relative w-full py-8 px-6 flex flex-col items-center text-center border-b border-[rgba(201,165,106,0.2)] bg-transparent">
       <p className="font-montserrat text-xs uppercase tracking-[0.25em] text-[#C9A56A] mb-1 font-medium">
         DRESS CODE
       </p>

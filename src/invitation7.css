@@ -110,7 +110,7 @@ body {
 /* Specific content placements without cards or heavy rectangles */
 .invitation7-delivery-content {
   justify-content: flex-start;
-  padding-top: 14svh;
+  padding-top: 10svh;
 }
 
 .invitation7-curtain-content {
@@ -119,8 +119,8 @@ body {
 }
 
 .invitation7-ballroom-content {
-  justify-content: flex-end;
-  padding-bottom: 14svh;
+  justify-content: flex-start;
+  padding-top: 17svh;
 }
 
 .text-soft-shadow {

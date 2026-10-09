@@ -55,7 +55,7 @@ export const Invitation7Delivery: React.FC<Invitation7DeliveryProps> = ({
   return (
     <section
       ref={sectionRef}
-      className="invitation7-video-page relative w-full min-h-[100svh] overflow-hidden bg-[#2A0308] select-none"
+      className="invitation7-video-page relative z-20 w-full min-h-[100svh] overflow-hidden bg-[#2A0308] select-none"
     >
       {/* 1. Arxa Fon Videosu (loop={true}) */}
       <video
@@ -89,10 +89,10 @@ export const Invitation7Delivery: React.FC<Invitation7DeliveryProps> = ({
       {/* 3. Çox yüngül, tam ekran gradient (şəffaf kart/blur olmadan) */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#170104]/30 via-transparent to-[#170104]/50 pointer-events-none z-15" />
 
-      {/* 4. HTML Mətn Qatı - Videonun yuxarı boş hissəsində (top: 12-16%), çantanın üzərində heç bir mətn yoxdur */}
+      {/* 4. HTML Mətn Qatı - Videonun yuxarı boş hissəsində, əllərin və çanta tutacaqlarının üzərinə çıxmır */}
       <div 
         className="absolute left-0 right-0 z-20 flex flex-col items-center justify-center text-center pointer-events-none px-6"
-        style={{ top: '14%' }}
+        style={{ top: '10%' }}
       >
         {children || (
           <div className="flex flex-col items-center justify-center max-w-[320px]">

@@ -88,7 +88,7 @@ export const Invitation7CurtainReveal: React.FC<Invitation7CurtainRevealProps> =
   return (
     <section
       ref={sectionRef}
-      className="invitation7-video-page relative w-full min-h-[100svh] overflow-hidden bg-[#2A0308] select-none"
+      className="invitation7-video-page relative z-20 w-full min-h-[100svh] overflow-hidden bg-[#2A0308] select-none"
     >
       {/* 1. Arxa Fon Videosu (loop={true}) */}
       <video
@@ -115,7 +115,7 @@ export const Invitation7CurtainReveal: React.FC<Invitation7CurtainRevealProps> =
       {/* 3. Çox yüngül, tam ekran gradient (şəffaf kart/blur olmadan) */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#170104]/35 via-transparent to-[#170104]/55 pointer-events-none z-15" />
 
-      {/* 4. HTML Mətn Qatı */}
+      {/* 4. HTML Mətn Qatı - Birbaşa video üzərində, kartsız və blursuz */}
       <div className="invitation7-video-page__content invitation7-curtain-content">
         {children || (
           <div
@@ -123,23 +123,15 @@ export const Invitation7CurtainReveal: React.FC<Invitation7CurtainRevealProps> =
               isRevealed
                 ? 'opacity-100 translate-y-0'
                 : 'opacity-0 translate-y-6 pointer-events-none'
-            } flex flex-col items-center justify-center max-w-[340px] px-6 py-5 text-center mx-4`}
-            style={{
-              background: 'rgba(42, 3, 8, 0.28)',
-              backdropFilter: 'blur(10px)',
-              WebkitBackdropFilter: 'blur(10px)',
-              border: '1px solid rgba(232, 201, 133, 0.24)',
-              boxShadow: '0 10px 32px rgba(23, 1, 4, 0.2)',
-              borderRadius: '20px',
-            }}
+            } flex flex-col items-center justify-center max-w-[360px] px-4 text-center`}
           >
-            <span className="font-montserrat text-xs uppercase tracking-[0.25em] text-[#C9A56A] text-gold-shadow mb-2 font-medium">
+            <span className="font-montserrat text-sm sm:text-[15px] uppercase tracking-[0.25em] text-[#C9A56A] text-gold-shadow mb-2 font-medium">
               {tagline}
             </span>
-            <h2 className="font-cormorant text-2xl sm:text-3xl text-[#F7EEE8] text-soft-shadow font-normal gold-gradient-text mb-2.5">
+            <h2 className="font-cormorant text-3xl sm:text-4xl text-[#F7EEE8] text-soft-shadow font-normal gold-gradient-text mb-3 leading-snug">
               {title}
             </h2>
-            <p className="font-cormorant text-sm sm:text-base text-[#F7EEE8]/90 text-soft-shadow italic leading-relaxed">
+            <p className="font-cormorant text-base sm:text-lg text-[#F7EEE8]/95 text-soft-shadow italic leading-relaxed">
               "{description}"
             </p>
           </div>
